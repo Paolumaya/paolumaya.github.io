@@ -1,0 +1,38 @@
+body {
+    --lumu-fur: #F5DDD5;
+    --lumu-face-skin: #CFABB7;
+    --lumu-brown: #6D4E5F;
+    --background: #6ABCA7ff;
+    --text: #000000;
+    background-color: var(--background);
+}
+
+.stealth:link,
+.stealth:visited,
+.stealth:hover,
+.stealth:active {
+    color: black;
+    text-decoration: none;
+}
+
+.tomorrow-regular {
+    font-family: "Tomorrow", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.tomorrow-regular-italic {
+    font-family: "Tomorrow", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+
+.open-sans-regular {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+  }
