@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8' />
+		<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+		<title>MultiMay Bot Form</title>
+		<meta name='viewport' content='width=device-width, initial-scale=1' />
+		<link rel='stylesheet' type='text/css' media='screen' href='main.css' />
+		<script src='multimay.js'></script>
+	</head>
+	<body class="open-sans-regular">
+		<form action="" method="POST">
+			<div>
+				<h1 class="mt-5">MultiMay Setup Form</h1>
+				<div>
+					<label>Input the code the bot gave you. DO NOT SHARE IT WITH ANYONE.</label>
+					<br />
+					<input name="code" type="text" class="form-control" />
+					<br />
+				</div>
+			</div>
+			<div>
+				<h3>Options</h3>
+				<div>
+					<div>
+						<label>How often do you want to roll?</label>
+						<br />
+						<input type="radio" id="daily" name="roll_freq" value="daily" />
+						<label for="daily">Daily (roll once per instance of you each day)</label>
+						<br />
+						<input type="radio" id="weekly" name="roll_freq" value="weekly" />
+						<label for="weekly">Weekly (roll 7 times per instance of you on the weekend)</label>
+						<br />
+						<input type="radio" id="once" name="roll_freq" value="once" />
+						<label for="once">Once (roll for the entire month all at once)</label>
+						<br />
+					</div>
+					<div>
+						<label>What parts, if any, should dictate how many times you roll per /roll?</label>
+						<br />
+						<input type="radio" id="head" name="instance_part" value="head" />
+						<label for="head">Head Count</label>
+						<br />
+						<input type="radio" id="torso" name="instance_part" value="torso"/>
+						<label for="torso">Upper Torso Count</label>
+						<br />
+						<input type="radio" id="body" name="instance_part" value="body"/>
+						<label for="body">Body Count</label>
+						<br />
+						<input type="radio" id="instance_part_none" name="instance_part" value="none"/>
+						<label for="instance_part_none">None, I am all of me.</label>
+						<br />
+					</div>
+					<div>
+						<label>Should all rolls affect all bodies, or just the one that rolled it?</label>
+						<br />
+						<input type="radio" id="affect_all" name="affect" value="all"/>
+						<label for="affect_all">All</label>
+						<br />
+						<input type="radio" id="affect_only_self" name="affect" value="only_self"/>
+						<label for="affect_only_self">Only the ones that rolled it</label>
+						<br />
+					</div>
+				</div>
+			</div>
+			<div>
+				<h3>Starting Parts</h3>
+				<div>
+					<input type="number" name="num_body" id="num_body" min="1" max="1000000" step="1" value="1"
+                    onchange="setCloneInputCount()" />
+					<label>Total Number of Bodies</label>
+					<br />
+					<input type="checkbox" name="are_same" id="are_same" value="are_same" onchange="setCloneInputCount()" checked='true' />
+					<label for="are_same">Are all bodies identical?</label>
+					<br />
+					<input type="checkbox" name="are_each_named" id="are_each_named" value="are_each_named"
+                    onchange="toggleNames()" />
+					<label for="are_each_named">Does each body have its own name?</label>
+					<div id="multi_part_section">
+						<input type="text" id="body_name" name="body_name" />
+						<label for="body_name">Name</label>
+						<br />
+						<input type="number" name="num_" id="num_" min="1" step="1" value="1" />
+						<label>Torsos per body</label>
+						<br />
+						<input type="number" name="num_" id="num_" min="1" step="1" value="1" />
+						<label>Taursos per body</label>
+						<br />
+						<input type="number" name="num_heads" id="num_heads" min="1" step="1" value="1" />
+						<label>Heads per torso</label>
+						<br />
+						<input type="number" name="num_eyes" id="num_eyes" min="1" step="1" value="2" />
+						<label>Eyes per head</label>
+						<br />
+						<input type="number" name="num_snouts" id="num_snouts" min="1" step="1" value="1" />
+						<label>Snouts per head</label>
+						<br />
+						<input type="number" name="num_mouths" id="num_mouths" min="1" step="1" value="1" />
+						<label>Mouths per Snout</label>
+						<br />
+						<input type="number" name="num_tongues" id="num_tongues" min="1" step="1" value="1" />
+						<label>Tongues per Mouth</label>
+						<br />
+						<input type="number" name="num_" id="num_" min="1" step="1" value="2" />
+						<label>Legs per body</label>
+						<br />
+						<input type="number" name="num_" id="num_" min="1" step="1" value="5" />
+						<label>Toes per foot</label>
+						<br />
+						<input type="number" name="num_" id="num_" min="1" step="1" value="2" />
+						<label>Arms per torso</label>
+						<br />
+						<input type="number" name="num_thumbs" id="num_" min="1" step="1" value="1" />
+						<label>Thumbs per hand</label>
+						<br />
+						<input type="number" name="num_fingers" id="num_fingers" min="1" step="1" value="4" />
+						<label>Fingers per hand</label>
+						<br />
+					</div>
+					<!--
+                <label>Total per body</label><input type="number" name="num_" id="num_" min="1" step="1" value="1">
+                -->
+				</div>
+			</div>
+		</form>
+	</body>
+</html>
