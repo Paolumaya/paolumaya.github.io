@@ -1,104 +1,101 @@
-let single_body = `<input type="number" name="n_torso" id="n_torso" min="1" step="1" value="1" />
-<label>Torsos per body</label>
-<br />
-<input type="number" name="n_taurso" id="n_taurso" min="1" step="1" value="1" />
-<label>Taursos per body</label>
-<br />
-<input type="number" name="n_head" id="n_head" min="1" step="1" value="1" />
-<label>Heads per torso</label>
-<br />
-<input type="number" name="n_eye" id="n_eye" min="1" step="1" value="2" />
-<label>Eyes per head</label>
-<br />
-<input type="number" name="n_snout" id="n_snout" min="1" step="1" value="1" />
-<label>Snouts per head</label>
-<br />
-<input type="number" name="n_mouth" id="n_mouth" min="1" step="1" value="1" />
-<label>Mouths per Snout</label>
-<br />
-<input type="number" name="n_tongue" id="n_tongue" min="1" step="1" value="1" />
-<label>Tongues per Mouth</label>
-<br />
-<input type="number" name="n_leg" id="n_leg" min="1" step="1" value="2" />
-<label>Legs per body</label>
-<br />
-<input type="number" name="n_toe" id="n_toe" min="1" step="1" value="5" />
-<label>Toes per foot</label>
-<br />
-<input type="number" name="n_arm" id="n_arm" min="1" step="1" value="2" />
-<label>Arms per torso</label>
-<br />
-<input type="number" name="n_thumb" id="n_thumb" min="1" step="1" value="1" />
-<label>Thumbs per hand</label>
-<br />
-<input type="number" name="n_finger" id="n_finger" min="1" step="1" value="4" />
-<label>Fingers per hand</label>
-<br />`;
-let extra_bodies = `
-<h4>Body %^b%</h4>
-<input type="text" id="body_name%^b%" name="body_name%^b%" />
-<label for="body_name%^b%">Name</label>
-<br />
-<input type="number" name="n_torsos%^b%" id="n_torsos%^b%" min="1" step="1" value="1" />
-<label>Torsos per body</label>
-<br />
-<input type="number" name="n_taursos%^b%" id="n_taursos%^b%" min="1" step="1" value="1" />
-<label>Taursos per body</label>
-<br />
-<input type="number" name="n_heads%^b%" id="n_heads%^b%" min="1" step="1" value="1" />
-<label>Heads per torso</label>
-<br />
-<input type="number" name="n_eyes%^b%" id="n_eyes%^b%" min="1" step="1" value="2" />
-<label>Eyes per head</label>
-<br />
-<input type="number" name="n_snouts%^b%" id="n_snouts%^b%" min="1" step="1" value="1" />
-<label>Snouts per head</label>
-<br />
-<input type="number" name="n_mouths%^b%" id="n_mouths%^b%" min="1" step="1" value="1" />
-<label>Mouths per Snout</label>
-<br />
-<input type="number" name="n_tongues%^b%" id="n_tongues%^b%" min="1" step="1" value="1" />
-<label>Tongues per Mouth</label>
-<br />
-<input type="number" name="n_legs%^b%" id="n_legs%^b%" min="1" step="1" value="2" />
-<label>Legs per body</label>
-<br />
-<input type="number" name="n_toes%^b%" id="n_toes%^b%" min="1" step="1" value="5" />
-<label>Toes per foot</label>
-<br />
-<input type="number" name="n_arms%^b%" id="n_arms%^b%" min="1" step="1" value="2" />
-<label>Arms per torso</label>
-<br />
-<input type="number" name="n_thumbs%^b%" id="n_thumbs%^b%" min="1" step="1" value="1" />
-<label>Thumbs per hand</label>
-<br />
-<input type="number" name="n_fingers%^b%" id="n_fingers%^b%" min="1" step="1" value="4" />
-<label>Fingers per hand</label>
-<br />`;
+// TODO
+// ADD STATE MEMORY
+// ADD TAILS
 
-body_name = `<input type="text" id="body_name" name="body_name" />
-<label for="body_name">Name</label>
-<br />`
+
+const body_state = [
+    { 'name': 't_name', 'value': '', },
+    { 'name': 'n_torso', 'value': '', },
+    { 'name': 'n_taurso', 'value': '', },
+    { 'name': 'n_head', 'value': '', },
+    { 'name': 'n_eye', 'value': '', },
+    { 'name': 'n_snout', 'value': '', },
+    { 'name': 'n_mouth', 'value': '', },
+    { 'name': 'n_tongue', 'value': '', },
+    { 'name': 'n_leg', 'value': '', },
+    { 'name': 'n_arm', 'value': '', },
+    { 'name': 'n_toe', 'value': '', },
+    { 'name': 'n_thumb', 'value': '', },
+    { 'name': 'n_finger', 'value': '', },
+];
+
+var body_inputs = [
+    { 'name': 't_name', 'type': 'text', 'value': '', 'max': '50', 'label': 'Name' },
+
+    { 'name': 'n_torso', 'type': 'number', 'value': '1', 'max': '123456789', 'label': '# of Torsos' },
+    { 'name': 'n_taurso', 'type': 'number', 'value': '0', 'max': '123456789', 'label': '# of Taursos' },
+    { 'name': 'n_head', 'type': 'number', 'value': '1', 'max': '123456789', 'label': '# of Heads' },
+    { 'name': 'n_eye', 'type': 'number', 'value': '2', 'max': '123456789', 'label': '# of Eyes' },
+    { 'name': 'n_snout', 'type': 'number', 'value': '1', 'max': '123456789', 'label': '# of Snouts' },
+    { 'name': 'n_mouth', 'type': 'number', 'value': '1', 'max': '123456789', 'label': '# of Mouths' },
+    { 'name': 'n_tongue', 'type': 'number', 'value': '1', 'max': '123456789', 'label': '# of Tongues' },
+    { 'name': 'n_leg', 'type': 'number', 'value': '2', 'max': '123456789', 'label': '# of Legs' },
+    { 'name': 'n_arm', 'type': 'number', 'value': '2', 'max': '123456789', 'label': '# of Arms' },
+    { 'name': 'n_toe', 'type': 'number', 'value': '5', 'max': '123456789', 'label': '# of Toes PER FOOT' },
+    { 'name': 'n_thumb', 'type': 'number', 'value': '1', 'max': '123456789', 'label': '# of Thumbs PER HAND' },
+    { 'name': 'n_finger', 'type': 'number', 'value': '4', 'max': '123456789', 'label': '# of Fingers PER HAND' },
+]
+
+function loadData() {
+    try {
+        return localStorage.getItem('multi_body')
+    } catch (error) {
+        return null
+    }
+};
+
+function saveData(data) {
+    x = JSON.stringify(data)
+    localStorage.setItem('multi_body', x)
+}
+
+
+function createNewBodies(bodies) { // var must be an int or shit will go bad
+    var tree = document.createDocumentFragment();
+    for (let index = 1; index < bodies + 1; index++) {
+
+        chk = document.getElementById("are_same");
+        if (chk.checked) {
+            var header = document.createElement("h4");
+            header.innerText = "Body " + index.toString();
+            header.setAttribute('id', 'body_header' + index.toString())
+            tree.appendChild(header);
+        }
+
+
+        body_inputs.forEach(input => {
+            e = document.createElement('input');
+            e.setAttribute('name', input['name'] + index.toString());
+            e.setAttribute('id', input['name'] + index.toString());
+            e.setAttribute('type', input['type']);
+            e.setAttribute('value', input['value']);
+            e.setAttribute('value', '123456789');
+            if (input['type'] === 'number') {
+                e.setAttribute('min', '0');
+                e.setAttribute('max', '123456789');
+                e.setAttribute('step', '1');
+            }
+            l = document.createElement('label');
+            l.setAttribute('for', input['name'] + index.toString());
+            l.innerText = input['label'];
+
+            tree.appendChild(e);
+            tree.appendChild(l);
+            // console.log(tree);
+            tree.appendChild(document.createElement('br'));
+        });
+    }
+    document.getElementById('multi_part_section').replaceChildren(tree);
+}
 
 function setCloneInputCount() {
     cnt = document.getElementById("n_body");
     chk = document.getElementById("are_same");
-    // div = document.getElementById("multi_part_section");
 
-    if (cnt.value > 1 && chk.checked === false) {
-        console.log("Waos...");
-        data = "";
-        console.log(cnt.value);
-
-        for (let index = 1; index < parseInt(cnt.value) + 1; index++) {
-            data = data.concat(extra_bodies.replaceAll("%^b%", index.toString()));
-            console.log(index);
-        }
-        document.getElementById("multi_part_section").innerHTML = data;
-        // div.innerHtml = data;
+    if (cnt.value > 1 && chk.checked) {
+        createNewBodies(parseInt(cnt.value))
     } else {
-        console.log("dosh...");
-        document.getElementById("multi_part_section").innerHTML = single_body;
+        createNewBodies(1)
     }
     checkNamesEnabled();
 }
@@ -107,38 +104,25 @@ function checkNamesEnabled() {
     chk = document.getElementById('are_each_named');
     chk2 = document.getElementById("are_same");
     cnt = document.getElementById("n_body");
-    all_names = document.querySelectorAll('[name^="body_name"]');
-    all_name_labels = document.querySelectorAll('[for^="body_name"]');
-    console.log(all_names);
-    if (chk.checked && !chk2.checked && !cnt.value == 1) {
-        document.getElementById('main_body_name').disabled = true;
-        document.getElementById('main_body_name').hidden = true;
-        document.getElementById('main_body_name_div').hidden = true;
-        all_names.forEach(element => {
-            element.disabled = false;
-            element.hidden = false;
-        });
-        all_name_labels.forEach(element => {
-            element.disabled = false;
-            element.hidden = false;
-        });
-    } else {
-        document.getElementById('main_body_name').disabled = false;
-        document.getElementById('main_body_name').hidden = false;
-        document.getElementById('main_body_name_div').hidden = false;
 
+    document.getElementById('main_body_name').disabled = chk.checked;
 
-        all_names.forEach(element => {
-            element.disabled = true;
-            element.hidden = true;
-        });
-        all_name_labels.forEach(element => {
-            element.disabled = true;
-            element.hidden = true;
-        });
-    }
-    // othernames = document.get
-    // if 
+    document.querySelectorAll('[name^="t_name"]').forEach(element => {
+        element.disabled = !chk.checked;
+        element.hidden = !chk.checked;
+    });
+    document.querySelectorAll('[for^="t_name"]').forEach(element => {
+        element.disabled = !chk.checked;
+        element.hidden = !chk.checked;
+    });
+
+}
+
+function zip_encode(str) {
+    const ascii = encodeURIComponent(str)
+    const array = new TextEncoder().encode(ascii)
+    const zip = fflate.zlibSync(array, { level: 9 })
+    return window.btoa(String.fromCharCode(...zip))
 }
 
 function sendForm(ev) {
@@ -149,16 +133,19 @@ function sendForm(ev) {
     console.log(all_data);
     con_tent = {};
     all_data.forEach(element => {
-        con_tent[`${element.name}`] = element.value;
+        if (!element.disabled) {
+            con_tent[`${element.name}`] = element.value;
+        }
     });
     formData = JSON.stringify(con_tent);
+
 
     const response = fetch(wh, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({"content": formData}),
+        body: JSON.stringify({ "content": zip_encode(formData) }),
     });
 }
 

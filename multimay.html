@@ -8,6 +8,8 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1' />
 	<link rel='stylesheet' type='text/css' media='screen' href='main.css' />
 	<script src='multimay.js'></script>
+	<script src="https://unpkg.com/fflate@0.8.2"></script>
+	<script src="https://cdn.jsdelivr.net/npm/protobufjs@7.5.2/dist/protobuf.min.js"></script>
 </head>
 
 <body class="open-sans-regular">
@@ -27,40 +29,40 @@
 				<div>
 					<label>How often do you want to roll?</label>
 					<br />
-					<input type="radio" id="daily" name="roll_freq" value="daily" />
+					<input type="radio" id="day" name="roll_freq" value="day" required />
 					<label for="daily">Daily (roll once per instance of you each day)</label>
 					<br />
-					<input type="radio" id="weekly" name="roll_freq" value="weekly" />
+					<input type="radio" id="week" name="roll_freq" value="week" required/>
 					<label for="weekly">Weekly (roll 7 times per instance of you on the weekend)</label>
 					<br />
-					<input type="radio" id="once" name="roll_freq" value="once" />
-					<label for="once">Once (roll for the entire month all at once)</label>
+					<input type="radio" id="month" name="roll_freq" value="month" required/>
+					<label for="once">Monthly (roll for the entire month all at once)</label>
 					<br />
 				</div>
 				<div>
 					<label>What parts, if any, should dictate how many times you roll per /roll?</label>
 					<br />
-					<input type="radio" id="head" name="instance_part" value="head" />
+					<input type="radio" id="head" name="inst_part" value="head" required/>
 					<label for="head">Head Count</label>
 					<br />
-					<input type="radio" id="torso" name="instance_part" value="torso" />
+					<input type="radio" id="torso" name="inst_part" value="torso" required/>
 					<label for="torso">Upper Torso Count</label>
 					<br />
-					<input type="radio" id="body" name="instance_part" value="body" />
+					<input type="radio" id="body" name="inst_part" value="body" required/>
 					<label for="body">Body Count</label>
 					<br />
-					<input type="radio" id="instance_part_none" name="instance_part" value="none" />
-					<label for="instance_part_none">None, I am all of me<a class="stealth"
+					<input type="radio" id="inst_part_none" name="inst_part" value="none" required/>
+					<label for="inst_part_none">None, I am all of me<a class="stealth"
 							href="https://www.youtube.com/watch?v=NucG0kD3pkg">.</a></label>
 					<br />
 				</div>
 				<div>
 					<label>Should all rolls affect all bodies, or just the one that rolled it?</label>
 					<br />
-					<input type="radio" id="affect_all" name="affect" value="all" />
+					<input type="radio" id="affect_all" name="affect" value="all" required/>
 					<label for="affect_all">All</label>
 					<br />
-					<input type="radio" id="affect_only_self" name="affect" value="only_self" />
+					<input type="radio" id="affect_only_self" name="affect" value="only_self" required/>
 					<label for="affect_only_self">Only the ones that rolled it</label>
 					<br />
 				</div>
@@ -69,18 +71,21 @@
 		<div>
 			<h3>Starting Parts</h3>
 			<button type="submit">Submit</button>
-			<div>
-				<input type="number" name="n_body" id="n_body" min="1" max="1000000" step="1" value="1"
+			<div id="parts-slot">
+				<input type="number" name="n_body" id="n_body" min="1" max="10" step="1" value="1"
 					onchange="setCloneInputCount()" />
 				<label>Total Number of Bodies</label>
 				<br />
-				<input type="checkbox" name="are_same" id="are_same" value="are_same" onchange="setCloneInputCount()"
-					checked='true' />
-				<label for="are_same">Are all bodies identical?</label>
-				<br />
 				<input type="checkbox" name="are_each_named" id="are_each_named" value="are_each_named"
 					onchange="checkNamesEnabled()" />
-				<label for="are_each_named">Does each body have its own name?</label>
+				<label for="are_each_named">Allow naming of individual bodies</label>
+				<br />
+
+				<input type="checkbox" name="are_same" id="are_same" value="are_same" onchange="setCloneInputCount()"
+					checked='true' />
+				<label for="are_same">Allow forms to vary from body to body</label>
+				<br />
+
 				<div id="main_body_name_div">
 					<input type="text" id="main_body_name" name="main_body_name" />
 					<label for="main_body_name">Name</label>
