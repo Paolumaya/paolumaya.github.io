@@ -22,18 +22,29 @@ const body_state = [
 var body_inputs = [
     { 'name': 'name', 'type': 'text', 'value': '', 'max': '50', 'label': 'Name' },
 
-    { 'name': 'torso', 'type': 'number', 'value': '1', 'max': '999', 'label': '# of Torsos', 'can_multi': true, },
-    { 'name': 'taurso', 'type': 'number', 'value': '0', 'max': '999', 'label': '# of Taursos', 'can_multi': true, },
-    { 'name': 'head', 'type': 'number', 'value': '1', 'max': '999', 'label': '# of Heads', 'can_multi': true, },
-    { 'name': 'eye', 'type': 'number', 'value': '2', 'max': '999', 'label': '# of Eyes', 'can_multi': true, },
-    { 'name': 'snout', 'type': 'number', 'value': '1', 'max': '999', 'label': '# of Snouts', 'can_multi': true, },
-    { 'name': 'mouth', 'type': 'number', 'value': '1', 'max': '999', 'label': '# of Mouths', 'can_multi': true, },
-    { 'name': 'tongue', 'type': 'number', 'value': '1', 'max': '999', 'label': '# of Tongues', 'can_multi': true, },
-    { 'name': 'leg', 'type': 'number', 'value': '2', 'max': '999', 'label': '# of Legs', 'can_multi': true, },
-    { 'name': 'arm', 'type': 'number', 'value': '2', 'max': '999', 'label': '# of Arms', 'can_multi': true, },
-    { 'name': 'toe', 'type': 'number', 'value': '5', 'max': '999', 'label': '# of Toes PER FOOT', 'can_multi': true, },
-    { 'name': 'thumb', 'type': 'number', 'value': '1', 'max': '999', 'label': '# of Thumbs PER HAND', 'can_multi': true, },
-    { 'name': 'finger', 'type': 'number', 'value': '4', 'max': '999', 'label': '# of Fingers PER HAND', 'can_multi': true, },
+    { 'name': 'torso', 'type': 'number', 'value': '1', 'max': '999', 'label': 'Torsos per body', 'can_multi': true, },
+    { 'name': 'taurso', 'type': 'number', 'value': '0', 'max': '999', 'label': 'Taursos per body', 'can_multi': true, },
+
+    { 'name': 'head', 'type': 'number', 'value': '1', 'max': '999', 'label': 'Heads per torso', 'can_multi': true, },
+    { 'name': 'eye', 'type': 'number', 'value': '2', 'max': '999', 'label': 'Eyes per head', 'can_multi': true, },
+    { 'name': 'pupil', 'type': 'number', 'value': '1', 'max': '999', 'label': 'Pupils per eye', 'can_multi': true, },
+    { 'name': 'snout', 'type': 'number', 'value': '1', 'max': '999', 'label': 'Snouts per head', 'can_multi': true, },
+    { 'name': 'nose', 'type': 'number', 'value': '1', 'max': '999', 'label': 'Noses per snout', 'can_multi': true, },
+    { 'name': 'nostril', 'type': 'number', 'value': '2', 'max': '999', 'label': 'Nostrils per nose', 'can_multi': true, },
+    { 'name': 'mouth', 'type': 'number', 'value': '1', 'max': '999', 'label': 'Mouths per snout', 'can_multi': true, },
+    { 'name': 'tooth', 'type': 'number', 'value': '1', 'max': '999', 'label': 'Rows of Teeth per mouth', 'can_multi': true, },
+    { 'name': 'tongue', 'type': 'number', 'value': '1', 'max': '999', 'label': 'Tongues per mouth', 'can_multi': true, },
+
+    { 'name': 'arm', 'type': 'number', 'value': '2', 'max': '999', 'label': 'Arms per torso', 'can_multi': true, },
+    { 'name': 'hand', 'type': 'number', 'value': '1', 'max': '999', 'label': 'Hands per arm', 'can_multi': true, },
+    { 'name': 'thumb', 'type': 'number', 'value': '1', 'max': '999', 'label': 'Thumbs per hand', 'can_multi': true, },
+    { 'name': 'finger', 'type': 'number', 'value': '4', 'max': '999', 'label': 'Fingers per hand', 'can_multi': true, },
+
+    { 'name': 'tail', 'type': 'number', 'value': '1', 'max': '999', 'label': 'Tails per body', 'can_multi': true, },
+    { 'name': 'leg', 'type': 'number', 'value': '2', 'max': '999', 'label': 'Legs per body', 'can_multi': true, },
+    { 'name': 'foot', 'type': 'number', 'value': '1', 'max': '999', 'label': 'Feet per leg', 'can_multi': true, },
+    { 'name': 'toe', 'type': 'number', 'value': '5', 'max': '999', 'label': 'Toes per foot', 'can_multi': true, },
+
 ]
 
 function loadData() {
@@ -91,8 +102,12 @@ function createNewBodies(bodies) { // var must be an int or shit will go bad
                 c.setAttribute('name', 'c_' + input['name'] + index.toString());
                 c.setAttribute('id', 'c_' + input['name'] + index.toString());
                 c.setAttribute('type', 'checkbox');
-                c.setAttribute('checked', true);
+                c.setAttribute('checked', input['can_multi']);
                 c.setAttribute('title', 'Enable/Disable');
+                l2 = document.createElement('label');
+                l2.setAttribute('for', 'c_' + input['name'] + index.toString())
+                l2.innerText = "Enable/Disable multi for this part:"
+                tree.appendChild(l2)
                 tree.appendChild(c);
             }
             tree.appendChild(e);
@@ -153,10 +168,16 @@ function sendForm(ev) {
     con_tent = {};
     all_data.forEach(element => {
         if (!element.disabled) {
-            if (element.type !== 'checkmark') {
+            if (element.type === 'number') {
+                con_tent[`${element.name}`] = parseInt(element.value);
+
+            } else if (element.type !== 'checkbox') {
                 con_tent[`${element.name}`] = element.value;
+
             } else {
-                con_tent[`${element.name}`] = element.checked;
+                con_tent[`${element.name}`] = ((element.checked) ? true : false);
+                console.log(con_tent[`${element.name}`] );
+                
             }
         }
     });
