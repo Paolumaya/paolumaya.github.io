@@ -20,20 +20,20 @@ const body_state = [
 ];
 
 var body_inputs = [
-    { 'name': 't_name', 'type': 'text', 'value': '', 'max': '50', 'label': 'Name' },
+    { 'name': 'name', 'type': 'text', 'value': '', 'max': '50', 'label': 'Name' },
 
-    { 'name': 'n_torso', 'type': 'number', 'value': '1', 'max': '123456789', 'label': '# of Torsos' },
-    { 'name': 'n_taurso', 'type': 'number', 'value': '0', 'max': '123456789', 'label': '# of Taursos' },
-    { 'name': 'n_head', 'type': 'number', 'value': '1', 'max': '123456789', 'label': '# of Heads' },
-    { 'name': 'n_eye', 'type': 'number', 'value': '2', 'max': '123456789', 'label': '# of Eyes' },
-    { 'name': 'n_snout', 'type': 'number', 'value': '1', 'max': '123456789', 'label': '# of Snouts' },
-    { 'name': 'n_mouth', 'type': 'number', 'value': '1', 'max': '123456789', 'label': '# of Mouths' },
-    { 'name': 'n_tongue', 'type': 'number', 'value': '1', 'max': '123456789', 'label': '# of Tongues' },
-    { 'name': 'n_leg', 'type': 'number', 'value': '2', 'max': '123456789', 'label': '# of Legs' },
-    { 'name': 'n_arm', 'type': 'number', 'value': '2', 'max': '123456789', 'label': '# of Arms' },
-    { 'name': 'n_toe', 'type': 'number', 'value': '5', 'max': '123456789', 'label': '# of Toes PER FOOT' },
-    { 'name': 'n_thumb', 'type': 'number', 'value': '1', 'max': '123456789', 'label': '# of Thumbs PER HAND' },
-    { 'name': 'n_finger', 'type': 'number', 'value': '4', 'max': '123456789', 'label': '# of Fingers PER HAND' },
+    { 'name': 'torso', 'type': 'number', 'value': '1', 'max': '999', 'label': '# of Torsos', 'can_multi': true, },
+    { 'name': 'taurso', 'type': 'number', 'value': '0', 'max': '999', 'label': '# of Taursos', 'can_multi': true, },
+    { 'name': 'head', 'type': 'number', 'value': '1', 'max': '999', 'label': '# of Heads', 'can_multi': true, },
+    { 'name': 'eye', 'type': 'number', 'value': '2', 'max': '999', 'label': '# of Eyes', 'can_multi': true, },
+    { 'name': 'snout', 'type': 'number', 'value': '1', 'max': '999', 'label': '# of Snouts', 'can_multi': true, },
+    { 'name': 'mouth', 'type': 'number', 'value': '1', 'max': '999', 'label': '# of Mouths', 'can_multi': true, },
+    { 'name': 'tongue', 'type': 'number', 'value': '1', 'max': '999', 'label': '# of Tongues', 'can_multi': true, },
+    { 'name': 'leg', 'type': 'number', 'value': '2', 'max': '999', 'label': '# of Legs', 'can_multi': true, },
+    { 'name': 'arm', 'type': 'number', 'value': '2', 'max': '999', 'label': '# of Arms', 'can_multi': true, },
+    { 'name': 'toe', 'type': 'number', 'value': '5', 'max': '999', 'label': '# of Toes PER FOOT', 'can_multi': true, },
+    { 'name': 'thumb', 'type': 'number', 'value': '1', 'max': '999', 'label': '# of Thumbs PER HAND', 'can_multi': true, },
+    { 'name': 'finger', 'type': 'number', 'value': '4', 'max': '999', 'label': '# of Fingers PER HAND', 'can_multi': true, },
 ]
 
 function loadData() {
@@ -49,12 +49,11 @@ function saveData(data) {
     localStorage.setItem('multi_body', x)
 }
 
-
 function createNewBodies(bodies) { // var must be an int or shit will go bad
     var tree = document.createDocumentFragment();
     for (let index = 1; index < bodies + 1; index++) {
 
-        chk = document.getElementById("are_same");
+        chk = document.getElementById("are_different");
         if (chk.checked) {
             var header = document.createElement("h4");
             header.innerText = "Body " + index.toString();
@@ -62,26 +61,42 @@ function createNewBodies(bodies) { // var must be an int or shit will go bad
             tree.appendChild(header);
         }
 
-
         body_inputs.forEach(input => {
             e = document.createElement('input');
-            e.setAttribute('name', input['name'] + index.toString());
-            e.setAttribute('id', input['name'] + index.toString());
             e.setAttribute('type', input['type']);
             e.setAttribute('value', input['value']);
-            e.setAttribute('value', '123456789');
             if (input['type'] === 'number') {
+                prefix = 'n_';
                 e.setAttribute('min', '0');
-                e.setAttribute('max', '123456789');
+                e.setAttribute('max', input['max']);
                 e.setAttribute('step', '1');
-            }
-            l = document.createElement('label');
-            l.setAttribute('for', input['name'] + index.toString());
-            l.innerText = input['label'];
 
+            } else if (input['type'] === 'text') {
+                prefix = 't_'
+                l = document.createElement('label');
+                l.setAttribute('for', 't_' + input['name'] + index.toString());
+                l.innerText = input['label'];
+            };
+
+            e.setAttribute('id', prefix + input['name'] + index.toString());
+            e.setAttribute('name', prefix + input['name'] + index.toString());
+
+            l = document.createElement('label');
+            l.innerText = input['label'];
+            l.setAttribute('for', prefix + input['name'] + index.toString());
+
+
+            if (input['can_multi']) {
+                c = document.createElement('input');
+                c.setAttribute('name', 'c_' + input['name'] + index.toString());
+                c.setAttribute('id', 'c_' + input['name'] + index.toString());
+                c.setAttribute('type', 'checkbox');
+                c.setAttribute('checked', true);
+                c.setAttribute('title', 'Enable/Disable');
+                tree.appendChild(c);
+            }
             tree.appendChild(e);
             tree.appendChild(l);
-            // console.log(tree);
             tree.appendChild(document.createElement('br'));
         });
     }
@@ -90,7 +105,7 @@ function createNewBodies(bodies) { // var must be an int or shit will go bad
 
 function setCloneInputCount() {
     cnt = document.getElementById("n_body");
-    chk = document.getElementById("are_same");
+    chk = document.getElementById("are_different");
 
     if (cnt.value > 1 && chk.checked) {
         createNewBodies(parseInt(cnt.value))
@@ -102,14 +117,18 @@ function setCloneInputCount() {
 
 function checkNamesEnabled() {
     chk = document.getElementById('are_each_named');
-    chk2 = document.getElementById("are_same");
+    chk2 = document.getElementById("are_different");
     cnt = document.getElementById("n_body");
 
     document.getElementById('main_body_name').disabled = chk.checked;
+    document.getElementById('main_body_name').required = !chk.checked;
+    document.querySelector('[for="main_body_name"]').disabled = chk.checked;
+    document.querySelector('[for="main_body_name"]').disabled = !chk.checked
 
     document.querySelectorAll('[name^="t_name"]').forEach(element => {
         element.disabled = !chk.checked;
         element.hidden = !chk.checked;
+        element.required = chk.checked;
     });
     document.querySelectorAll('[for^="t_name"]').forEach(element => {
         element.disabled = !chk.checked;
@@ -134,11 +153,16 @@ function sendForm(ev) {
     con_tent = {};
     all_data.forEach(element => {
         if (!element.disabled) {
-            con_tent[`${element.name}`] = element.value;
+            if (element.type !== 'checkmark') {
+                con_tent[`${element.name}`] = element.value;
+            } else {
+                con_tent[`${element.name}`] = element.checked;
+            }
         }
     });
     formData = JSON.stringify(con_tent);
 
+    console.log(zip_encode(formData).length);
 
     const response = fetch(wh, {
         method: 'POST',
