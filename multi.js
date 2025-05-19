@@ -74,21 +74,32 @@ function createNewBodies(bodies) { // var must be an int or shit will go bad
 
         body_inputs.forEach(input => {
             e = document.createElement('input');
-            e.setAttribute('type', input['type']);
-            e.setAttribute('value', input['value']);
+
             if (input['type'] === 'number') {
                 prefix = 'n_';
                 e.setAttribute('min', '0');
                 e.setAttribute('max', input['max']);
                 e.setAttribute('step', '1');
+                e.setAttribute('maxlength', '3');
 
             } else if (input['type'] === 'text') {
                 prefix = 't_'
                 l = document.createElement('label');
                 l.setAttribute('for', 't_' + input['name'] + index.toString());
                 l.innerText = input['label'];
-            };
+                e.setAttribute('pattern', '.{1,50}');
 
+            };
+            e.setAttribute('type', input['type']);
+            try {
+                existing = document.getElementById(prefix + input['name'] + index.toString())
+                console.log(existing);
+                
+                e.value = existing.value;
+            } catch (error) {
+                console.log("FUCK");
+                e.setAttribute('value', input['value']);
+            }
             e.setAttribute('id', prefix + input['name'] + index.toString());
             e.setAttribute('name', prefix + input['name'] + index.toString());
 
@@ -115,7 +126,10 @@ function createNewBodies(bodies) { // var must be an int or shit will go bad
             tree.appendChild(document.createElement('br'));
         });
     }
-    document.getElementById('multi_part_section').replaceChildren(tree);
+
+    // tree.
+
+        document.getElementById('multi_part_section').replaceChildren(tree);
 }
 
 function setCloneInputCount() {
@@ -176,8 +190,8 @@ function sendForm(ev) {
 
             } else {
                 con_tent[`${element.name}`] = ((element.checked) ? true : false);
-                console.log(con_tent[`${element.name}`] );
-                
+                console.log(con_tent[`${element.name}`]);
+
             }
         }
     });
