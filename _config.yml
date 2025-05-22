@@ -1,0 +1,23 @@
+title: Test
+description: uhhh what
+baseurl: "/"
+domain: "lumu.info"
+url: "https://lumu.info"
+
+github_username: paolumaya
+
+markdown: kramdown
+kramdown:
+    parse_block_html: true
+
+theme: jekyll-theme-architect
+
+exclude:
+    - flake.lock
+    - Gemfile*
+    - flake*
+    - gemset.nix
+    - post_ideas
+    - serve.sh
+    - LICENSE
+    - notes
