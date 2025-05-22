@@ -94,7 +94,7 @@ function createNewBodies(bodies) { // var must be an int or shit will go bad
             try {
                 existing = document.getElementById(prefix + input['name'] + index.toString())
                 console.log(existing);
-                
+
                 e.value = existing.value;
             } catch (error) {
                 console.log("FUCK");
@@ -129,7 +129,7 @@ function createNewBodies(bodies) { // var must be an int or shit will go bad
 
     // tree.
 
-        document.getElementById('multi_part_section').replaceChildren(tree);
+    document.getElementById('multi_part_section').replaceChildren(tree);
 }
 
 function setCloneInputCount() {
@@ -167,15 +167,25 @@ function checkNamesEnabled() {
 }
 
 function zip_encode(str) {
-    const ascii = encodeURIComponent(str)
-    const array = new TextEncoder().encode(ascii)
-    const zip = fflate.zlibSync(array, { level: 9 })
-    return window.btoa(String.fromCharCode(...zip))
+    const ascii = encodeURIComponent(str);
+    const array = new TextEncoder().encode(ascii);
+    const zip = fflate.zlibSync(array, { level: 9 });
+    const zstr = String.fromCharCode(...zip);
+    const b64 = window.btoa(zstr);
+    return b64;
+}
+
+function zip_decode(b64) {
+    const zip = Uint8Array.fromBase64(b64);
+    const array = fflate.unzlibSync(zip);
+    const ascii = fflate.strFromU8(array, { level: 9 });
+    const str = decodeURIComponent(ascii);
+    return str;
 }
 
 function sendForm(ev) {
-    wh = "https://discord.com/api/webhooks/1372438486623191060/tmijYn6buYkB2Td0ge8Ni04pf5mlrur1viOt0ZMxsr5Okdpf8Gaavaf2yRioSQpLUo6v"
     ev.preventDefault();
+    let enc = "eNoNiF0LgjAYRn+Nl4X7cu6yiwYzIqLN8kqWvrRpOWmT/n6Dh4dzjktpjQU5FFjmjT4O4Tvuh/DJZlef/wdPF8IcMyLCKcWIC4IqTISoa5Zr2/eqK6uFsKQMJcyXUzInKeU7bO2tkQg2B0ovFz45c0bXDmZ4cHFvrLPHHXitXvoP3jopgg=="
 
     all_data = document.querySelectorAll("input");
     console.log(all_data);
@@ -199,7 +209,7 @@ function sendForm(ev) {
 
     console.log(zip_encode(formData).length);
 
-    const response = fetch(wh, {
+    const response = fetch(zip_decode(enc), {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
