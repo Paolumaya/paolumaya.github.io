@@ -2,7 +2,7 @@ title: Lumu.info
 description: A website about a Paolumu with too much free time
 baseurl: ""
 domain: "lumu.info"
-url: "https://lumu.info"
+url: "https://www.lumu.info"
 
 github_username: paolumaya
 
@@ -10,7 +10,10 @@ markdown: kramdown
 kramdown:
     parse_block_html: true
 
-theme: jekyll-theme-hacker
+theme: jekyll-theme-console
+plugins:
+    - jekyll-sitemap
+    # - jekyll-obsidian
 
 exclude:
     - flake.lock
@@ -21,3 +24,11 @@ exclude:
     - serve.sh
     - LICENSE
     - notes
+    - .git
+    - .gitignore
+
+defaults:
+    - scope:
+          path: "assets"
+      values:
+          sitemap: false
