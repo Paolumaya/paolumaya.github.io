@@ -1,0 +1,98 @@
+html {
+    --lumu-fur: #F5DDD5;
+    --lumu-face-skin: #CFABB7;
+    --lumu-brown: #6D4E5F;
+    --background: #6ABCA7ff;
+    --text: #333;
+    color: var(--text);
+}
+
+body {
+    background-color: var(--background);
+}
+
+.stealth:link,
+.stealth:visited,
+.stealth:hover,
+.stealth:active {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.tomorrow-regular {
+    font-family: "Tomorrow", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.tomorrow-regular-italic {
+    font-family: "Tomorrow", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+
+.open-sans-regular {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+}
+
+#multi_part_section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: flex-start;
+    /* or center */
+}
+
+.body-wrapper {
+    flex: 1 1 300px;
+    /* Grow/shrink with a min width of 300px */
+    box-sizing: border-box;
+    outline: 2px 2px var(--lumu-brown);
+    padding: 1em;
+    min-width: 250px;
+    max-width: 350px;
+}
+
+.body-table {
+    border-collapse: collapse;
+    width: max-content;
+    align-self: center;
+    table-layout: auto;
+    color: black;
+}
+
+.body-table th,
+.body-table td {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.body-table tr:nth-child(odd) {
+    background-color: var(--background);
+}
+
+.body-table tr:nth-child(even) {
+    background-color: #a7cbbf;
+}
+
+.body-table th {
+    background-color: #f0f0f0;
+}
+
+.body-table label {
+    font-size: 0.85em;
+    margin-top: 0.5em;
+    display: block;
+    color: #000;
+}
+.body-table tr td input {
+    accent-color: var(--lumu-brown);
+}

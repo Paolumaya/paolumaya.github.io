@@ -4,6 +4,7 @@ source "https://rubygems.org"
 # Gems dependencies to be installed
 gem "jekyll-theme-console", "~> 0.3.12"
 gem "minima", "~> 2.5.1"
+gem "obsidian-parser", "~> 0.7.0"
 gem "webrick", "~> 1.9.1"
 gem "github-pages", "~> 232", group: :jekyll_plugins
 

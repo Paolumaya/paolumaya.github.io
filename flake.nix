@@ -15,6 +15,7 @@
         minima = "2.5.1";
         webrick = "1.9.1";
         jekyll-theme-console = "0.3.12";
+        obsidian-parser = "0.7.0";
       };
 
       inc_plugins = {

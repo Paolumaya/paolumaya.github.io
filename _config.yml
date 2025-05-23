@@ -6,16 +6,24 @@ url: "https://www.lumu.info"
 
 github_username: paolumaya
 
-markdown: kramdown
-kramdown:
-    parse_block_html: true
-
-# theme: jekyll-theme-console
-remote_theme: b2a3e8/jekyll-theme-console
+# markdown: obsidian-parser
+# markdown: kramdown
+markdown: ObsidianConverter
+# kramdown:
+#     parse_block_html: true
 
 plugins:
+    - ObsidianConverter
     - jekyll-sitemap
-    # - jekyll-obsidian
+
+plugins_dir:
+    - _plugins
+
+theme: minima
+minima:
+  - skin: dark
+# remote_theme:
+# remote_theme: b2a3e8/jekyll-theme-console
 
 exclude:
     - flake.lock

@@ -770,6 +770,16 @@
     };
     version = "1.6.6";
   };
+  markly = {
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "0sd9p81q255id1s9x6jx8s13nh1qcl7pn2n0acdfc2n4gxqm3wcl";
+      type = "gem";
+    };
+    version = "0.7.0";
+  };
   mercenary = {
     groups = ["default" "jekyll_plugins"];
     platforms = [];
@@ -832,6 +842,17 @@
       type = "gem";
     };
     version = "1.18.8";
+  };
+  obsidian-parser = {
+    dependencies = ["markly"];
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "0dndqadb9ifw370rqrpkhing48lc4s3bs5i7vv4y1i7x0mq16lln";
+      type = "gem";
+    };
+    version = "0.7.0";
   };
   octokit = {
     dependencies = ["faraday" "sawyer"];

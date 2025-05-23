@@ -5,9 +5,11 @@
 	<meta charset='utf-8' />
 	<meta http-equiv='X-UA-Compatible' content='IE=edge' />
 	<title>Multi Bot Form</title>
+	<link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
 	<meta name='viewport' content='width=device-width, initial-scale=1' />
-	<link rel='stylesheet' type='text/css' media='screen' href='main.css' />
-	<script src='multi.js'></script>
+	<link rel='stylesheet' type='text/css' media='screen' href='assets/main.css' />
+	<link rel='stylesheet' type='text/css' media='screen' href='assets/site.css' />
+	<script src='/assets/multi.js'></script>
 	<script src="https://unpkg.com/fflate@0.8.2"></script>
 </head>
 
@@ -85,8 +87,8 @@
 				<label for="are_each_named">Allow naming of individual bodies</label>
 				<br />
 
-				<input type="checkbox" name="are_different" id="are_different" value="are_different" onchange="setCloneInputCount()"
-					checked='true' />
+				<input type="checkbox" name="are_different" id="are_different" value="are_different"
+					onchange="setCloneInputCount()" checked='true' />
 				<label for="are_different">Allow forms to vary from body to body</label>
 				<br />
 
@@ -95,50 +97,8 @@
 					<label for="main_body_name">Name</label>
 					<br />
 				</div>
-				<div id="multi_part_section">
-					<!-- <input type="number" name="n_torso" id="n_torso" min="1" step="1" value="1" />
-					<label>Torsos per body</label>
-					<br />
-					<input type="number" name="n_taurso" id="n_taurso" min="1" step="1" value="1" />
-					<label>Taursos per body</label>
-					<br />
-					<input type="number" name="n_head" id="n_head" min="1" step="1" value="1" />
-					<label>Heads per torso</label>
-					<br />
-					<input type="number" name="n_eye" id="n_eye" min="1" step="1" value="2" />
-					<label>Eyes per head</label>
-					<br />
-					<input type="number" name="n_eye" id="n_eye" min="1" step="1" value="2" />
-					<label>Pupils per eye</label>
-					<br />
-					<input type="number" name="n_snout" id="n_snout" min="1" step="1" value="1" />
-					<label>Snouts per head</label>
-					<br />
-					<input type="number" name="n_mouth" id="n_mouth" min="1" step="1" value="1" />
-					<label>Mouths per Snout</label>
-					<br />
-					<input type="number" name="n_tongue" id="n_tongue" min="1" step="1" value="1" />
-					<label>Tongues per Mouth</label>
-					<br />
-					<input type="number" name="n_leg" id="n_leg" min="1" step="1" value="2" />
-					<label>Legs per body</label>
-					<br />
-					<input type="number" name="n_toe" id="n_toe" min="1" step="1" value="5" />
-					<label>Toes per foot</label>
-					<br />
-					<input type="number" name="n_arm" id="n_arm" min="1" step="1" value="2" />
-					<label>Arms per torso</label>
-					<br />
-					<input type="number" name="n_thumb" id="n_thumb" min="1" step="1" value="1" />
-					<label>Thumbs per hand</label>
-					<br />
-					<input type="number" name="n_finger" id="n_finger" min="1" step="1" value="4" />
-					<label>Fingers per hand</label>
-					<br /> -->
+				<div id="multi_part_section" class="multi_flex">
 				</div>
-				<!--
-                <label>Total per body</label><input type="number" name="n_" id="n_" min="1" step="1" value="1">
-                -->
 			</div>
 		</div>
 	</form>
