@@ -1,6 +1,6 @@
-title: Test
-description: uhhh what
-baseurl: "/"
+title: Lumu.info
+description: A website about a Paolumu with too much free time
+baseurl: ""
 domain: "lumu.info"
 url: "https://lumu.info"
 
@@ -10,7 +10,7 @@ markdown: kramdown
 kramdown:
     parse_block_html: true
 
-theme: jekyll-theme-architect
+theme: jekyll-theme-hacker
 
 exclude:
     - flake.lock
