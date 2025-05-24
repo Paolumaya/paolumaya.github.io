@@ -15,6 +15,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Pull submodules
+        run: git submodule update --init
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
