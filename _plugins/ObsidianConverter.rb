@@ -1,16 +1,12 @@
 require 'jekyll'
 require 'kramdown'
+require 'octokit/warnable'
+
 
   class Jekyll::Converters::Markdown::ObsidianConverter
-    safe true
-    priority :high
-
-    def matches(ext)
-      ext.downcase == ".md"
-    end
-
-    def output_ext(ext)
-      ".html"
+    def initialize(config)
+      @config = config
+      puts "help?"
     end
 
     def convert(content)
@@ -21,6 +17,8 @@ require 'kramdown'
     private
 
     def preprocess_obsidian(content)
+      puts content
+      Octokit::Warnable.octokit_warn content
       # Convert [[Internal Links]] to <a href="/internal-links">Internal Links</a>
       content.gsub!(/\[\[([^\]|]+)\|?([^\]]+)?\]\]/g) do
         target = Regexp.last_match(1).strip

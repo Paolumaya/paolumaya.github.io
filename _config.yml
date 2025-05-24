@@ -15,9 +15,10 @@ markdown: ObsidianConverter
 plugins:
     - ObsidianConverter
     - jekyll-sitemap
+    - obsidian_links
 
-plugins_dir:
-    - _plugins
+# plugins_dir:
+    # - _plugins
 
 theme: minima
 minima:

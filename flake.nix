@@ -15,7 +15,6 @@
         minima = "2.5.1";
         webrick = "1.9.1";
         jekyll-theme-console = "0.3.12";
-        obsidian-parser = "0.7.0";
       };
 
       inc_plugins = {
@@ -65,6 +64,8 @@
               gcc
               gnumake
               bundler
+	      zlib
+	      xz
             ]
             ++ add_deps;
         };
@@ -82,7 +83,7 @@
 
         # nix run .#generate -> Re-generate the gemfile, lockfile, build environment and gemset.nix
         #   To use only if added a dependency, bumped a version, etc ...
-        generate = simple_script "generate_blog_env" [pkgs.bundix] ''
+        generate = simple_script "generate_blog_env" [pkgs.bundix pkgs.zlib pkgs.xz] ''
           set -e
 
           rm -f gemset.nix Gemfile Gemfile.lock .bundle/config
