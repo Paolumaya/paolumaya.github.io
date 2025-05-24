@@ -1,4 +1,4 @@
-### AKA [[Aberration]] Specimen #7
+### AKA [[Concepts/Aberration|Aberration]] Specimen #7
 #### Events Leading Up To Fusion Event:
 	Maya was assigned to an expedition to the Coral Highlands.
 	Maya was on an expedition to the Coral Highlands to study the pair, who were initially thought to be a same-sex female couple, due to Amber's claw length and dull stomach scale color, before Amber was reassessed as male. After 8 days of observation, Maya encountered them, laying together, both gravely injured by a fight with a Legiana.  Both were hurt enough that Maya was able to approach. According to her, as she was tending to Amber's wounds, a blue light blinded her. She stumbled forward, onto the pair and passed out.  When she came to, her body was entirely different. Her legs had attached to the necks of the Paolumu, which had themselves fused together into a hermaphroditic Paolumu.
