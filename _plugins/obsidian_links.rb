@@ -1,18 +1,17 @@
-# _plugins/obsidian_links.rb
 module Jekyll
   class ObsidianLinkPreprocessor < Generator
     safe true
     priority :low
 
     def generate(site)
-      documents = site.pages + site.posts.docs + site.collections.flat_map { |_, coll| coll.docs }
+      documents = site.collections.flat_map { |_, coll| coll.docs }
 
       documents.each do |doc|
+        puts documents
         next unless doc.extname == ".md" || doc.extname == ".markdown"
 
         content = doc.content.dup
 
-        # Skip inside code blocks
         content = exclude_code_blocks(content) do |text|
           process_obsidian_markup(text)
         end
@@ -24,53 +23,45 @@ module Jekyll
     private
 
     def process_obsidian_markup(content)
-      # Process embedded notes or images
+      # Process embeds like ![[note or image]]
       content.gsub!(/!\[\[([^\]]+)\]\]/) do
         target = $1.strip
 
         if image_extension?(target)
-          # Image embed: ![[image.png]]
-          src = slugify_path(target)
-          "![#{File.basename(target, '.*')}](#{src})"
+          alt_text = File.basename(target, '.*')
+          "![#{alt_text}](#{obsidian_to_url(target)})"
         else
-          # Note embed: ![[Note]] → render as iframe or styled blockquote
-          file = slugify_path(target) + ".html"
-          "<iframe src=\"#{file}\" class=\"embed-note\"></iframe>"
+          "<iframe src=\"#{obsidian_to_url(target)}\" class=\"embed-note\"></iframe>"
         end
       end
 
-      # Process normal Obsidian links: [[Note]], [[Note#Section|Alias]]
+      # Process internal links like [[Note]], [[Note#Section|Alias]]
       content.gsub!(/\[\[([^\]|#]+)(?:#([^\]|]+))?(?:\|([^\]]+))?\]\]/) do
         target, heading, alias_text = $1.strip, $2&.strip, $3&.strip
         link_text = alias_text || heading || File.basename(target)
 
-        url = slugify_path(target) + ".html"
-        url += "#" + Jekyll::Utils.slugify(heading) if heading
-
-        "[#{link_text}](#{url})"
+        "[#{link_text}](#{obsidian_to_url(target, heading)})"
       end
 
       content
     end
 
-    def slugify_path(path)
-      parts = path.split("/")
-      parts.map { |p| Jekyll::Utils.slugify(p) }.join("/")
+    def obsidian_to_url(path, heading = nil)
+      slugged = path.split("/").map { |p| Jekyll::Utils.slugify(p) }.join("/")
+      url = "/lore/#{slugged}/"
+      url += "##{Jekyll::Utils.slugify(heading)}" if heading
+      url
     end
 
     def image_extension?(filename)
       ext = File.extname(filename).downcase
-      [".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp"].include?(ext)
+      %w[.png .jpg .jpeg .gif .svg .webp].include?(ext)
     end
 
     def exclude_code_blocks(content)
       segments = content.split(/(```.*?```)/m)
       segments.map!.with_index do |seg, i|
-        if i.even?
-          yield(seg) # only process non-code segments
-        else
-          seg # untouched code block
-        end
+        i.even? ? yield(seg) : seg
       end
       segments.join
     end

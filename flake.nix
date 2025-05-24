@@ -9,18 +9,19 @@
       pkgs = import nixpkgs {inherit system;};
 
       # Specify gems and dependencies here
-      github-pages-version = 232;
+      # github-pages-version = 232;
 
       inc_gems = {
+        jekyll = "4.3.0";
         minima = "2.5.1";
         webrick = "1.9.1";
         jekyll-theme-console = "0.3.12";
+        kramdown = "2.5.1";
       };
 
       inc_plugins = {
         # jekyll-feed = "0.17.0";
         jekyll-sitemap = "1.4.0";
-        # jekyll-obsidian = "1.1";
       };
 
       # Generation of the Gemfile
@@ -40,7 +41,7 @@
 
         # Gems dependencies to be installed
         ${gems}
-        gem "github-pages", "~> ${builtins.toString github-pages-version}", group: :jekyll_plugins
+        # gem "github-pages", "~> $ {builtins.toString github-pages-version}", group: :jekyll_plugins
 
         # Github Pages plugins
         group :jekyll_plugins do

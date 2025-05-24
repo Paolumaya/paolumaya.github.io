@@ -6,23 +6,19 @@ url: "https://www.lumu.info"
 
 github_username: paolumaya
 
-# markdown: obsidian-parser
-# markdown: kramdown
-markdown: ObsidianConverter
-# kramdown:
-#     parse_block_html: true
+markdown: kramdown
+kramdown:
+    parse_block_html: true
 
 plugins:
-    - ObsidianConverter
     - jekyll-sitemap
-    - obsidian_links
 
-# plugins_dir:
-    # - _plugins
+plugins_dir:
+    - _plugins
 
-theme: minima
-minima:
-  - skin: dark
+# theme: minima
+# minima:
+#     - skin: dark
 # remote_theme:
 # remote_theme: b2a3e8/jekyll-theme-console
 
@@ -37,9 +33,25 @@ exclude:
     - notes
     - .git
     - .gitignore
+    - _lore/.obsidian
+    - _lore/.stfolder
+    - _lore/Inspiration
+    - _lore/Templates
+    - _lore/.gitignore
+    - _lore/README.md
+    - .github
+    - .jekyll-cache
+    - CNAME
+    - .bundle
+    - README.md
 
 defaults:
     - scope:
           path: "assets"
       values:
           sitemap: false
+
+collections:
+  lore:
+    output: true
+    permalink: /lore/:path/
