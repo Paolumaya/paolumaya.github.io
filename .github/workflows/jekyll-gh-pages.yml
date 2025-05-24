@@ -3,12 +3,14 @@ name: Build and Deploy Jekyll Site with Plugins
 on:
   push:
     branches:
-      - main  # Or 'master', depending on your default branch
+      - main # Or 'master', depending on your default branch
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
