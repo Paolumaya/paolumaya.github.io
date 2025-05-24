@@ -41,7 +41,6 @@ exclude:
     - _lore/README.md
     - .github
     - .jekyll-cache
-    - CNAME
     - .bundle
     - README.md
 
