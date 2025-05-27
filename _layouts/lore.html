@@ -1,0 +1,31 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
+  {% include favicon.html %}
+  <!-- <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}"> -->
+  <!-- <link id="main-stylesheet" rel="stylesheet" href="{{ site.baseurl }}"> -->
+  <link id="main-stylesheet" rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <!-- <link id="main-stylesheet" rel="stylesheet" href="{{ site.baseurl }}/styles.css"> -->
+  <!-- { include head.html %}
+  { include head-custom.html %} -->
+</head>
+<body>
+  {% include header.html %}
+
+  {% if page.sidebar %}
+    {% include sidebar.html %}
+  {% endif %}
+  <div class="content-container">
+    <main>
+      {{ content }}
+    </main>
+  </div>
+
+  {% include footer.html %}
+</body>
+</html>

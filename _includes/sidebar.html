@@ -1,0 +1,15 @@
+<aside class="sidebar">
+    <h3>Explore Lore</h3>
+    <ul>
+      {% for group in site.data.sidebar_groups %}
+        <li>
+          <h4>{{ group[0] }}</h4>
+          <ul>
+            {% for link in group[1] %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  </aside>

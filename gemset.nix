@@ -135,16 +135,27 @@
     };
     version = "0.17.0";
   };
+  jekyll-remote-theme = {
+    dependencies = ["addressable" "jekyll" "jekyll-sass-converter" "rubyzip"];
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "0h2bwl42dig0282366kpxazxb8xafnppnd4yvq2dzcsg90kfgzfk";
+      type = "gem";
+    };
+    version = "0.4.3";
+  };
   jekyll-sass-converter = {
     dependencies = ["sass-embedded"];
     groups = ["default" "jekyll_plugins"];
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "0hr4hsir8lm8aw3yj9zi7hx2xs4k00xn9inh24642d6iy625v4l3";
+      sha256 = "00n9v19h0qgjijygfdkdh2gwpmdlz49nw1mqk6fnp43f317ngrz2";
       type = "gem";
     };
-    version = "3.1.0";
+    version = "3.0.0";
   };
   jekyll-seo-tag = {
     dependencies = ["jekyll"];
@@ -178,6 +189,17 @@
       type = "gem";
     };
     version = "0.3.12";
+  };
+  jekyll-theme-hacker = {
+    dependencies = ["jekyll" "jekyll-seo-tag"];
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "12ppp0bxffy838p4my79nppq112fazifr3cxwvhv3l6yjbwzjsw1";
+      type = "gem";
+    };
+    version = "0.2.0";
   };
   jekyll-watch = {
     dependencies = ["listen"];
@@ -325,6 +347,16 @@
       type = "gem";
     };
     version = "4.5.2";
+  };
+  rubyzip = {
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "05an0wz87vkmqwcwyh5rjiaavydfn5f4q1lixcsqkphzvj7chxw5";
+      type = "gem";
+    };
+    version = "2.4.1";
   };
   safe_yaml = {
     groups = ["default" "jekyll_plugins"];

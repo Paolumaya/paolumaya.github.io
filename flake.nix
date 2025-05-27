@@ -16,7 +16,9 @@
         minima = "2.5.1";
         webrick = "1.9.1";
         jekyll-theme-console = "0.3.12";
+        jekyll-theme-hacker = "0.2.0";
         kramdown = "2.5.1";
+        jekyll-remote-theme = "0.4.3";
       };
 
       inc_plugins = {
@@ -65,8 +67,8 @@
               gcc
               gnumake
               bundler
-	      zlib
-	      xz
+              zlib
+              xz
             ]
             ++ add_deps;
         };
