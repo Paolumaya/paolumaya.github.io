@@ -20,7 +20,7 @@ plugins_dir:
 # minima:
 #     - skin: dark
 # remote_theme:
-# remote_theme: b2a3e8/jekyll-theme-console
+remote_theme: b2a3e8/jekyll-theme-console
 
 exclude:
     - flake.lock
