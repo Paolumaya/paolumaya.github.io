@@ -9,3 +9,8 @@ tsconfig.tsbuildinfo
 private/
 .replit
 replit.nix
+.devenv
+.devenv.flake.nix
+docs
+README.md
+CODE_OF_CONDUCT.md
