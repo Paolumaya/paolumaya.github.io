@@ -1,0 +1,1 @@
+A strange energy released by the primordial dragon Xeno'jiiva, which can radically alter any flora & fauna exposed to it in unpredictable ways.

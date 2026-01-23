@@ -1,0 +1,1 @@
+Macroflora created from exposure to [[#Eldertaint]]. Generally signify an area heavily affected by Eldertaint, and are likely to have Abominations nearby.
