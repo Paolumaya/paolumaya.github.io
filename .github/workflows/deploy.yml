@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: 
-        run: eval `ssh-agent -s` && ssh-add - <<< '${{ secrets.ACTIONS_DEPLOY_KEY }}'
+        uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          submodules: true
 
       - name: Pull submodules
         run: git submodule update --init
