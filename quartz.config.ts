@@ -17,7 +17,7 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "lumu.info",
-    ignorePatterns: ["private", "templates", ".obsidian", "Ideas", "README", "Templates", "Story Outline"],
+    ignorePatterns: ["private", "templates", ".obsidian", "Ideas", "README", "Templates", "Story Outline", "disabled"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
